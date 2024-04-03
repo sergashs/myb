@@ -1,0 +1,390 @@
+.header {
+  position: sticky;
+  top: 0;
+  padding-top: 5px;
+  background: #ffffff;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+
+  @include media("<xl") {
+    padding-bottom: 5px;
+  }
+
+  .logo-holder {
+    display: inline-flex;
+    width: 126px;
+
+    @include media("<lg") {
+      width: 110px;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .main-nav {
+    @include media("<xl") {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      padding-top: 51px;
+      padding-bottom: 51px;
+      overflow: auto;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: $transition;
+    }
+
+    .menu-opened & {
+      @include media("<xl") {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: all;
+      }
+    }
+
+    .inner-holder {
+      display: flex;
+
+      @include media(">=xl") {
+        align-items: center;
+      }
+
+      @include media("<xl") {
+        flex: 1;
+        flex-direction: column;
+        align-items: center;
+        overflow: auto;
+      }
+    }
+  }
+
+  .main-menu {
+    display: flex;
+    font-size: 15px;
+
+    @include media(">=xl") {
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    @include media("<xl") {
+      flex-direction: column;
+      margin-bottom: 40px;
+      margin-top: auto;
+      font-size: 17px;
+    }
+
+    > li {
+      @include media(">=xl") {
+        display: flex;
+        align-items: center;
+      }
+
+      &:not(:last-child) {
+        @include media("<xl") {
+          margin-bottom: 20px;
+        }
+      }
+    }
+
+    .link {
+      position: relative;
+      cursor: pointer;
+      display: inline-flex;
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-top: 22px;
+      padding-bottom: 21px;
+
+      @include media("<xl") {
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
+
+      &::after {
+        @include media(">=xl") {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 0;
+          height: 4px;
+          background: #4eaefa;
+          transition: $transition;
+        }
+      }
+
+      &:hover {
+        &::after {
+          @include media(">=xl") {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .has-dropdown {
+      position: relative;
+
+      .dropdown-icon {
+        display: flex;
+        transition: $transition;
+
+        @include media(">=xl") {
+          margin-left: 6px;
+        }
+
+        @include media("<xl") {
+          position: absolute;
+          top: 50%;
+          right: -3px;
+          transform: translateY(-50%);
+          margin-top: -1px;
+        }
+      }
+
+      .dropdown {
+        transition: $transition;
+
+        @include media(">=xl") {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 202px;
+          opacity: 0;
+          pointer-events: none;
+          visibility: hidden;
+          z-index: 10;
+        }
+
+        @include media("<xl") {
+          overflow: hidden;
+          max-height: 0;
+        }
+      }
+
+      ul {
+        background: #ffffff;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        overflow: hidden;
+
+        a {
+          display: block;
+          padding: 11px 14px 9px 15px;
+          letter-spacing: 0.2px;
+
+          &:hover {
+            @include media(">=xl") {
+              background: #f5f5f5;
+            }
+          }
+        }
+      }
+
+      &:hover {
+        .dropdown {
+          @include media(">=xl") {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+          }
+        }
+
+        .link {
+          &::after {
+            @include media(">=xl") {
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      &.open {
+        .dropdown-icon {
+          @include media("<xl") {
+            transform: translateY(-50%) rotate(180deg);
+          }
+        }
+      }
+    }
+  }
+
+  .lang-list {
+    display: inline-flex;
+    background: #f5f5f5;
+
+    @include media(">=xl") {
+      margin-left: 21px;
+      margin-right: 30px;
+    }
+
+    @include media("<xl") {
+      margin-bottom: 30px;
+    }
+
+    li {
+      display: flex;
+      padding: 3px 7px 4px 7px;
+
+      &:first-child {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+      }
+
+      &:last-child {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        border: solid 1px rgba(#e5e5e5, 0.6);
+      }
+
+      &.active {
+        background: #ffffff;
+        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
+      }
+    }
+
+    a {
+      display: flex;
+    }
+  }
+
+  .social-links {
+    display: inline-flex;
+    align-items: center;
+
+    @include media("<xl") {
+      margin-bottom: auto;
+    }
+
+    li {
+      &:not(:last-child) {
+        margin-right: 20px;
+      }
+    }
+
+    a {
+      display: flex;
+      color: #707683;
+
+      &:hover {
+        color: #1f1c4e;
+      }
+    }
+  }
+
+  .menu-toggle {
+    position: relative;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    line-height: 1.2;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+
+    @include media(">=xl") {
+      display: none;
+    }
+
+    em {
+      font-style: normal;
+    }
+
+    span {
+      width: 24px;
+      height: 14px;
+      margin-right: 16px;
+      position: relative;
+
+      &::before {
+        left: 0;
+        top: 0;
+
+        .menu-opened & {
+          transform: rotate(-45deg);
+          top: 6px;
+        }
+      }
+
+      &::after {
+        right: 0;
+        bottom: 0;
+
+        .menu-opened & {
+          transform: rotate(45deg);
+          bottom: 6px;
+        }
+      }
+
+      &::before,
+      &::after {
+        content: "";
+        display: block;
+        background-color: currentColor;
+        height: 2px;
+        position: absolute;
+        width: 50%;
+        transition: $transition;
+
+        .menu-opened & {
+          width: 100%;
+        }
+      }
+
+      i {
+        width: 100%;
+        height: 2px;
+        background-color: currentColor;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        margin-top: -1px;
+        transition: $transition;
+
+        .menu-opened & {
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+    }
+
+    &:hover {
+      span {
+        &::before,
+        &::after {
+          @include media(">xl") {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

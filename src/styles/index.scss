@@ -1,0 +1,17 @@
+@import "vars";
+@import "mixins/mixins";
+@import "vars";
+@import "reset";
+@import "common";
+@import "fonts";
+
+//layout
+@import "layout/header";
+
+// components
+@import "components/btn";
+@import "components/accordion-item";
+
+// sections
+@import "sections/section-intro";
+@import "sections/section-faq";

@@ -1,0 +1,52 @@
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#main {
+  flex: 1;
+}
+
+.container {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  max-width: 1150px;
+  width: 100%;
+  margin: auto;
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.h1,
+.h2 {
+  font-weight: 500;
+}
+
+.h1 {
+  font-size: 38px;
+  line-height: 1.84;
+
+  @include media("<md") {
+    font-size: 34px;
+  }
+}
+
+.h2 {
+  font-size: 36px;
+  line-height: 1.16;
+
+  @include media("<md") {
+    font-size: 36px;
+  }
+}
